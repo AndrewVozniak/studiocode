@@ -1,66 +1,33 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const Header = dynamic(() => import("@/components/Header"), { ssr: false });
+const Hero = dynamic(() => import("@/components/Hero"), { ssr: false });
+const TechStack = dynamic(() => import("@/components/TechStack"), { ssr: false });
+const Portfolio = dynamic(() => import("@/components/Portfolio"), { ssr: false });
+const Services = dynamic(() => import("@/components/Services"), { ssr: false });
+const Stats = dynamic(() => import("@/components/Stats"), { ssr: false });
+const Process = dynamic(() => import("@/components/Process"), { ssr: false });
+const Reviews = dynamic(() => import("@/components/Reviews"), { ssr: false });
+const Contact = dynamic(() => import("@/components/Contact"), { ssr: false });
+const Footer = dynamic(() => import("@/components/Footer"), { ssr: false });
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <TechStack />
+        <Portfolio />
+        <Services />
+        <Stats />
+        <Process />
+        <Reviews />
+        <Contact />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }

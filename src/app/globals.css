@@ -1,42 +1,98 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #050505;
+  --color-bg-secondary: #0a0a0a;
+  --color-bg-tertiary: #0f0f0f;
+  --color-text-primary: #e8e8e8;
+  --color-text-secondary: #777;
+  --color-text-muted: #3a3a3a;
+  --color-accent: #c8ff00;
+  --color-accent-dim: #c8ff0010;
+  --color-border: #1a1a1a;
+  --color-border-hover: #333;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
-html,
 body {
-  max-width: 100vw;
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Light theme */
+[data-theme="light"] {
+  --color-bg-primary: #fafafa;
+  --color-bg-secondary: #f2f2f2;
+  --color-bg-tertiary: #fff;
+  --color-text-primary: #111;
+  --color-text-secondary: #777;
+  --color-text-muted: #ccc;
+  --color-accent: #4a7a00;
+  --color-accent-dim: #4a7a0010;
+  --color-border: #e0e0e0;
+  --color-border-hover: #bbb;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* Subtle noise texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+::selection {
+  background: var(--color-accent);
+  color: #000;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+/* Tag pill — premium feel */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-secondary);
+  transition: all 0.25s ease;
+}
+.tag:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Accent gradient rule */
+.accent-rule {
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-accent), transparent 50%);
+  opacity: 0.25;
 }
