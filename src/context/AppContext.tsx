@@ -19,8 +19,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    const savedLocale = localStorage.getItem("oria-locale") as Locale | null;
-    const savedTheme = localStorage.getItem("oria-theme") as "dark" | "light" | null;
+    const savedLocale = localStorage.getItem("sc-locale") as Locale | null;
+    const savedTheme = localStorage.getItem("sc-theme") as "dark" | "light" | null;
     if (savedLocale) setLocaleState(savedLocale);
     if (savedTheme) setTheme(savedTheme);
   }, []);
@@ -28,18 +28,19 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (mounted) {
       document.documentElement.setAttribute("data-theme", theme);
+      document.documentElement.setAttribute("lang", locale);
     }
-  }, [theme, mounted]);
+  }, [theme, locale, mounted]);
 
   const setLocale = (l: Locale) => {
     setLocaleState(l);
-    localStorage.setItem("oria-locale", l);
+    localStorage.setItem("sc-locale", l);
   };
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    localStorage.setItem("oria-theme", next);
+    localStorage.setItem("sc-theme", next);
   };
 
   if (!mounted) {

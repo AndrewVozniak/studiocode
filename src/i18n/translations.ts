@@ -1,136 +1,154 @@
-export type Locale = "en" | "ua" | "ru";
+export type Locale = "en" | "ua";
 
 export const translations = {
   nav: {
-    services: { en: "Services", ua: "Послуги", ru: "Услуги" },
-    portfolio: { en: "Portfolio", ua: "Портфоліо", ru: "Портфолио" },
-    process: { en: "Process", ua: "Процес", ru: "Процесс" },
-    contact: { en: "Contact", ua: "Контакт", ru: "Контакт" },
+    services: { en: "Services", ua: "Послуги" },
+    about: { en: "About", ua: "Про нас" },
+    portfolio: { en: "Portfolio", ua: "Портфоліо" },
+    process: { en: "Process", ua: "Процес" },
+    contact: { en: "Contact", ua: "Контакт" },
   },
   hero: {
     title: {
-      en: "Building Digital Products\nThat Scale",
-      ua: "Створюємо Цифрові Продукти\nЯкі Масштабуються",
-      ru: "Создаём Цифровые Продукты\nКоторые Масштабируются",
+      en: "We Build Software\nThat Drives Growth",
+      ua: "Ми створюємо софт\nЩо рухає бізнес",
     },
     tagline: {
-      en: "From MVP to Enterprise. Fast, Reliable, Global.",
-      ua: "Від MVP до Enterprise. Швидко, Надійно, Глобально.",
-      ru: "От MVP до Enterprise. Быстро, Надёжно, Глобально.",
+      en: "Custom web development, automation & design. From idea to production.",
+      ua: "Веб-розробка, автоматизація та дизайн на замовлення. Від ідеї до продакшну.",
     },
-    cta: { en: "Get Started", ua: "Почати", ru: "Начать" },
+    cta: { en: "Start a Project", ua: "Почати проєкт" },
     ctaSecondary: {
-      en: "View Portfolio",
-      ua: "Дивитись Портфоліо",
-      ru: "Смотреть Портфолио",
-    },
-    stats: {
-      years: { en: "4 Years", ua: "4 Роки", ru: "4 Года" },
-      yearsLabel: { en: "On Market", ua: "На ринку", ru: "На рынке" },
-      clients: { en: "200+", ua: "200+", ru: "200+" },
-      clientsLabel: { en: "Projects Delivered", ua: "Проєктів здано", ru: "Проектов сдано" },
-      continents: { en: "3 Continents", ua: "3 Континенти", ru: "3 Континента" },
-      continentsLabel: { en: "Served", ua: "Обслуговуємо", ru: "Обслуживаем" },
+      en: "Our Services",
+      ua: "Наші послуги",
     },
   },
   services: {
-    title: { en: "What We Do", ua: "Що ми робимо", ru: "Что мы делаем" },
+    title: { en: "What We Do", ua: "Що ми робимо" },
     subtitle: {
       en: "End-to-end digital solutions for ambitious businesses",
       ua: "Комплексні цифрові рішення для амбітного бізнесу",
-      ru: "Комплексные цифровые решения для амбициозного бизнеса",
     },
   },
   techStack: {
     title: {
-      en: "Technologies We Love",
-      ua: "Технології які ми любимо",
-      ru: "Технологии которые мы любим",
+      en: "Technologies We Use",
+      ua: "Технології які ми використовуємо",
     },
   },
   portfolio: {
-    title: { en: "Recent Work", ua: "Останні Роботи", ru: "Последние Работы" },
-    all: { en: "All", ua: "Всі", ru: "Все" },
+    title: { en: "Recent Work", ua: "Останні роботи" },
+    all: { en: "All", ua: "Всі" },
   },
   stats: {
     title: {
-      en: "Trusted by startups and enterprises across",
-      ua: "Нам довіряють стартапи та підприємства з",
-      ru: "Нам доверяют стартапы и предприятия из",
+      en: "Trusted by businesses across Ukraine and beyond",
+      ua: "Нам довіряють компанії з усієї України та за її межами",
     },
   },
   reviews: {
     title: {
       en: "What Clients Say",
       ua: "Що кажуть клієнти",
-      ru: "Что говорят клиенты",
     },
   },
   process: {
-    title: { en: "How We Work", ua: "Як ми працюємо", ru: "Как мы работаем" },
+    title: { en: "How We Work", ua: "Як ми працюємо" },
+  },
+  about: {
+    title: { en: "About Us", ua: "Про нас" },
+    heading: {
+      en: "A Team That\nDelivers Results",
+      ua: "Команда яка\nДає результат",
+    },
+    description: {
+      en: "Studio Code is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
+      ua: "Studio Code — українська компанія з розробки програмного забезпечення, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом та підприємствами — створюючи рішення, які швидкі, надійні та масштабовані.",
+    },
+    values: [
+      {
+        title: { en: "Quality First", ua: "Якість понад усе" },
+        description: {
+          en: "Clean code, best practices, thorough testing. We don't cut corners.",
+          ua: "Чистий код, кращі практики, ретельне тестування. Ми не зрізаємо кути.",
+        },
+      },
+      {
+        title: { en: "Transparency", ua: "Прозорість" },
+        description: {
+          en: "Regular updates, clear communication, no surprises. You always know where your project stands.",
+          ua: "Регулярні оновлення, чітка комунікація, без сюрпризів. Ви завжди знаєте статус проєкту.",
+        },
+      },
+      {
+        title: { en: "Result-Oriented", ua: "Орієнтація на результат" },
+        description: {
+          en: "We focus on business outcomes, not just features. Every line of code serves a purpose.",
+          ua: "Ми фокусуємось на бізнес-результатах, а не просто фічах. Кожен рядок коду має мету.",
+        },
+      },
+    ],
   },
   contact: {
     title: {
       en: "Let's Build Something Great",
       ua: "Давайте створимо щось велике",
-      ru: "Давайте создадим что-то великое",
     },
     subtitle: {
       en: "Tell us about your project and we'll get back to you within 24 hours.",
       ua: "Розкажіть про ваш проєкт і ми зв'яжемось протягом 24 годин.",
-      ru: "Расскажите о вашем проекте и мы свяжемся в течение 24 часов.",
     },
-    name: { en: "Full Name", ua: "Повне ім'я", ru: "Полное имя" },
-    email: { en: "Email", ua: "Email", ru: "Email" },
-    projectType: { en: "Project Type", ua: "Тип проєкту", ru: "Тип проекта" },
+    name: { en: "Full Name", ua: "Повне ім'я" },
+    email: { en: "Email", ua: "Email" },
+    phone: { en: "Phone", ua: "Телефон" },
+    projectType: { en: "Project Type", ua: "Тип проєкту" },
     projectTypes: {
-      webapp: { en: "Web Application", ua: "Веб-додаток", ru: "Веб-приложение" },
-      bot: { en: "Bot / Automation", ua: "Бот / Автоматизація", ru: "Бот / Автоматизация" },
-      design: { en: "UI/UX Design", ua: "UI/UX Дизайн", ru: "UI/UX Дизайн" },
-      other: { en: "Other", ua: "Інше", ru: "Другое" },
+      webapp: { en: "Web Application", ua: "Веб-додаток" },
+      bot: { en: "Bot / Automation", ua: "Бот / Автоматизація" },
+      design: { en: "UI/UX Design", ua: "UI/UX Дизайн" },
+      other: { en: "Other", ua: "Інше" },
     },
-    budget: { en: "Budget Range", ua: "Діапазон бюджету", ru: "Диапазон бюджета" },
+    budget: { en: "Budget Range", ua: "Діапазон бюджету" },
     budgets: {
-      small: { en: "< $5,000", ua: "< $5,000", ru: "< $5,000" },
-      medium: { en: "$5,000 - $15,000", ua: "$5,000 - $15,000", ru: "$5,000 - $15,000" },
-      large: { en: "$15,000+", ua: "$15,000+", ru: "$15,000+" },
+      small: { en: "< $5,000", ua: "< $5,000" },
+      medium: { en: "$5,000 - $15,000", ua: "$5,000 - $15,000" },
+      large: { en: "$15,000+", ua: "$15,000+" },
     },
     message: {
       en: "Tell us about your project",
       ua: "Розкажіть про ваш проєкт",
-      ru: "Расскажите о вашем проекте",
     },
-    submit: { en: "Send Message", ua: "Надіслати", ru: "Отправить" },
+    submit: { en: "Send Message", ua: "Надіслати" },
     success: {
       en: "Message sent! We'll get back to you soon.",
       ua: "Повідомлення надіслано! Ми зв'яжемось найближчим часом.",
-      ru: "Сообщение отправлено! Мы свяжемся в ближайшее время.",
+    },
+    error: {
+      en: "Something went wrong. Please try again or email us directly.",
+      ua: "Щось пішло не так. Спробуйте ще раз або напишіть нам напряму.",
     },
   },
   footer: {
     tagline: {
-      en: "Building Digital Products That Scale",
-      ua: "Створюємо Цифрові Продукти Які Масштабуються",
-      ru: "Создаём Цифровые Продукты Которые Масштабируются",
+      en: "We Build Software That Drives Growth",
+      ua: "Ми створюємо софт що рухає бізнес",
     },
-    services: { en: "Services", ua: "Послуги", ru: "Услуги" },
-    resources: { en: "Resources", ua: "Ресурси", ru: "Ресурсы" },
-    legal: { en: "Legal", ua: "Правове", ru: "Правовое" },
+    services: { en: "Services", ua: "Послуги" },
+    resources: { en: "Resources", ua: "Ресурси" },
+    legal: { en: "Legal", ua: "Правове" },
     privacy: {
       en: "Privacy Policy",
       ua: "Політика конфіденційності",
-      ru: "Политика конфиденциальности",
     },
     terms: {
       en: "Terms of Service",
       ua: "Умови використання",
-      ru: "Условия использования",
     },
   },
 } as const;
 
 export function t(
-  obj: Record<string, string> | { en: string; ua: string; ru: string },
+  obj: Record<string, string> | { en: string; ua: string },
   locale: Locale
 ): string {
   return (obj as Record<string, string>)[locale] || (obj as Record<string, string>)["en"];

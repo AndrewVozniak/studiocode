@@ -19,7 +19,6 @@ export default function Portfolio() {
   return (
     <section id="work" className="py-24 px-6">
       <div className="max-w-[1400px] mx-auto">
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12">
           <div>
             <motion.div
@@ -37,8 +36,8 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              Selected<br />
-              <span style={{ color: "var(--color-accent)" }}>Projects</span>
+              {locale === "ua" ? "Вибрані" : "Selected"}<br />
+              <span style={{ color: "var(--color-accent)" }}>{locale === "ua" ? "Проєкти" : "Projects"}</span>
             </motion.h2>
           </div>
 
@@ -61,7 +60,6 @@ export default function Portfolio() {
 
         <div className="accent-rule mb-0" />
 
-        {/* Project list */}
         <div>
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
@@ -74,7 +72,6 @@ export default function Portfolio() {
                 transition={{ duration: 0.3 }}
                 className="border-b border-[var(--color-border)] group cursor-pointer relative"
               >
-                {/* Hover background with padding */}
                 <div className="absolute -inset-x-6 inset-y-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" style={{ background: "var(--color-accent-dim)" }} />
 
                 <div className="relative py-7 md:py-8 flex flex-col md:flex-row md:items-center justify-between gap-4 px-2">

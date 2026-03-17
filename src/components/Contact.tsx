@@ -11,13 +11,41 @@ export default function Contact() {
   const c = translations.contact;
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setSubmitted(true);
-    setLoading(false);
+    setError(false);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      projectType: formData.get("projectType") as string,
+      budget: formData.get("budget") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass =
@@ -43,7 +71,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            READY TO BUILD<br />SOMETHING GREAT?
+            {locale === "ua" ? "ГОТОВІ СТВОРИТИ\nЩОСЬ ВЕЛИКЕ?" : "READY TO BUILD\nSOMETHING GREAT?"}
           </motion.h2>
           <motion.a
             href="#contact"
@@ -52,7 +80,7 @@ export default function Contact() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
           >
-            START A PROJECT
+            {locale === "ua" ? "ПОЧАТИ ПРОЄКТ" : "START A PROJECT"}
           </motion.a>
         </div>
       </section>
@@ -79,8 +107,8 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
-                Got a project?<br />
-                <span style={{ color: "var(--color-accent)" }}>Let&apos;s talk.</span>
+                {locale === "ua" ? "Є проєкт?" : "Got a project?"}<br />
+                <span style={{ color: "var(--color-accent)" }}>{locale === "ua" ? "Давайте поговоримо." : "Let\u2019s talk."}</span>
               </motion.h2>
 
               <motion.p
@@ -99,11 +127,19 @@ export default function Contact() {
                 viewport={{ once: true }}
               >
                 <a
-                  href="mailto:hello@oria.agency"
+                  href="mailto:info@studiocode.com.ua"
                   className="flex items-center gap-4 group hover:text-[var(--color-accent)] transition-colors"
                 >
                   <span className="font-mono text-xs tracking-wider uppercase text-[var(--color-text-secondary)] w-20">Email</span>
-                  <span className="text-sm font-medium">hello@oria.agency</span>
+                  <span className="text-sm font-medium">info@studiocode.com.ua</span>
+                  <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all" />
+                </a>
+                <a
+                  href="mailto:hr@studiocode.com.ua"
+                  className="flex items-center gap-4 group hover:text-[var(--color-accent)] transition-colors"
+                >
+                  <span className="font-mono text-xs tracking-wider uppercase text-[var(--color-text-secondary)] w-20">HR</span>
+                  <span className="text-sm font-medium">hr@studiocode.com.ua</span>
                   <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all" />
                 </a>
                 <a
@@ -111,7 +147,7 @@ export default function Contact() {
                   className="flex items-center gap-4 group hover:text-[var(--color-accent)] transition-colors"
                 >
                   <span className="font-mono text-xs tracking-wider uppercase text-[var(--color-text-secondary)] w-20">Telegram</span>
-                  <span className="text-sm font-medium">@oria_agency</span>
+                  <span className="text-sm font-medium">@studiocode_ua</span>
                   <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:rotate-45 transition-all" />
                 </a>
               </motion.div>
@@ -141,22 +177,28 @@ export default function Contact() {
                       <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
                         {t(c.name, locale)} <span style={{ color: "var(--color-accent)" }}>*</span>
                       </label>
-                      <input required type="text" className={inputClass} />
+                      <input required type="text" name="name" className={inputClass} />
                     </div>
                     <div>
                       <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
                         {t(c.email, locale)} <span style={{ color: "var(--color-accent)" }}>*</span>
                       </label>
-                      <input required type="email" className={inputClass} />
+                      <input required type="email" name="email" className={inputClass} />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
+                        {t(c.phone, locale)}
+                      </label>
+                      <input type="tel" name="phone" className={inputClass} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
                         {t(c.projectType, locale)} <span style={{ color: "var(--color-accent)" }}>*</span>
                       </label>
-                      <select required className={`${inputClass} cursor-pointer`} defaultValue="">
+                      <select required name="projectType" className={`${inputClass} cursor-pointer`} defaultValue="">
                         <option value="" disabled>&mdash;</option>
                         <option value="webapp">{t(c.projectTypes.webapp, locale)}</option>
                         <option value="bot">{t(c.projectTypes.bot, locale)}</option>
@@ -164,17 +206,18 @@ export default function Contact() {
                         <option value="other">{t(c.projectTypes.other, locale)}</option>
                       </select>
                     </div>
-                    <div>
-                      <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
-                        {t(c.budget, locale)}
-                      </label>
-                      <select className={`${inputClass} cursor-pointer`} defaultValue="">
-                        <option value="" disabled>&mdash;</option>
-                        <option value="small">{t(c.budgets.small, locale)}</option>
-                        <option value="medium">{t(c.budgets.medium, locale)}</option>
-                        <option value="large">{t(c.budgets.large, locale)}</option>
-                      </select>
-                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono tracking-wider uppercase text-[var(--color-text-secondary)] mb-2">
+                      {t(c.budget, locale)}
+                    </label>
+                    <select name="budget" className={`${inputClass} cursor-pointer`} defaultValue="">
+                      <option value="" disabled>&mdash;</option>
+                      <option value="small">{t(c.budgets.small, locale)}</option>
+                      <option value="medium">{t(c.budgets.medium, locale)}</option>
+                      <option value="large">{t(c.budgets.large, locale)}</option>
+                    </select>
                   </div>
 
                   <div>
@@ -183,10 +226,22 @@ export default function Contact() {
                     </label>
                     <textarea
                       required
+                      name="message"
                       rows={4}
                       className={`${inputClass} resize-none`}
                     />
                   </div>
+
+                  {/* Honeypot anti-spam */}
+                  <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+                    <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+                  </div>
+
+                  {error && (
+                    <p className="text-sm" style={{ color: "#ef4444" }}>
+                      {t(c.error, locale)}
+                    </p>
+                  )}
 
                   <button
                     type="submit"
@@ -194,7 +249,7 @@ export default function Contact() {
                     className="px-9 py-4 text-sm font-medium text-black rounded-full transition-all hover:scale-105 disabled:opacity-50 flex items-center gap-2 mt-2"
                     style={{ background: "var(--color-accent)" }}
                   >
-                    {t(c.submit, locale)}
+                    {loading ? (locale === "ua" ? "Відправка..." : "Sending...") : t(c.submit, locale)}
                     <ArrowUpRight size={16} />
                   </button>
                 </motion.form>

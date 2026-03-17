@@ -38,10 +38,10 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <span className="w-10 h-[1px]" style={{ background: "var(--color-accent)" }} />
-          <span className="font-mono text-xs tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">Digital Product Studio</span>
+          <span className="font-mono text-xs tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">Software Development Studio</span>
         </motion.div>
 
-        {/* Main heading — large and readable */}
+        {/* Main heading */}
         <motion.h1
           className="text-[clamp(3rem,8vw,7.5rem)] font-medium leading-[0.92] tracking-[-0.035em] max-w-5xl"
           initial={{ opacity: 0, y: 40 }}
@@ -59,7 +59,7 @@ export default function Hero() {
           ))}
         </motion.h1>
 
-        {/* Subtitle — bigger, more readable */}
+        {/* Subtitle */}
         <motion.p
           className="mt-10 text-xl md:text-2xl text-[var(--color-text-secondary)] max-w-lg leading-relaxed font-light"
           initial={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function Hero() {
             {t(translations.hero.cta, locale)}
           </a>
           <a
-            href="#work"
+            href="#services"
             className="text-sm tracking-wide text-[var(--color-text-secondary)] hover:text-[var(--color-accent)] transition-colors flex items-center gap-2 group font-mono uppercase text-xs"
           >
             {t(translations.hero.ctaSecondary, locale)}
@@ -102,10 +102,10 @@ export default function Hero() {
       >
         <div className="max-w-[1400px] mx-auto px-6 py-7 flex flex-wrap gap-x-16 gap-y-4">
           {[
-            { val: "2022", label: { en: "Since", ua: "З", ru: "С" } },
-            { val: "200+", label: { en: "Projects", ua: "Проєктів", ru: "Проектов" } },
-            { val: "3 Continents", label: { en: "Reach", ua: "Охоплення", ru: "Охват" } },
-            { val: "Full-cycle", label: { en: "Delivery", ua: "Доставка", ru: "Доставка" } },
+            { val: "2022", label: { en: "Since", ua: "З" } },
+            { val: "200+", label: { en: "Projects", ua: "Проєктів" } },
+            { val: "Ukraine", label: { en: "Based", ua: "Базуємось" } },
+            { val: "Full-cycle", label: { en: "Delivery", ua: "Доставка" } },
           ].map((s) => (
             <div key={s.val} className="flex items-center gap-3 font-mono text-xs tracking-wide uppercase">
               <span className="text-[var(--color-text-primary)] font-medium">{s.val}</span>

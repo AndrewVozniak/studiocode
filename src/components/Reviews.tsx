@@ -19,7 +19,6 @@ export default function Reviews() {
 
   return (
     <section className="py-24 px-6 relative overflow-hidden">
-      {/* Large decorative quote */}
       <div
         className="absolute -top-8 left-[3%] text-[22rem] font-serif leading-none select-none pointer-events-none"
         style={{ color: "var(--color-accent)", opacity: 0.03 }}

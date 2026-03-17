@@ -14,11 +14,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Oria Agency — Building Digital Products That Scale",
+  title: "Studio Code — Custom Software Development in Ukraine",
   description:
-    "Premium web studio with international experience. Full-stack development, automation, UI/UX design, and MVP delivery. From concept to deployment.",
+    "Ukrainian software development company. Full-stack web development, automation, UI/UX design, and MVP delivery. From idea to production.",
   keywords: [
     "web development",
+    "software development Ukraine",
     "full-stack",
     "Next.js",
     "React",
@@ -28,12 +29,25 @@ export const metadata: Metadata = {
     "Telegram bots",
     "UI/UX design",
     "MVP development",
+    "studiocode",
+    "розробка сайтів",
+    "веб-розробка",
   ],
   openGraph: {
-    title: "Oria Agency — Building Digital Products That Scale",
+    title: "Studio Code — Custom Software Development",
     description:
-      "From MVP to Enterprise. Fast, Reliable, Global.",
+      "We build software that drives growth. Custom web development, automation & design.",
     type: "website",
+    url: "https://studiocode.com.ua",
+    siteName: "Studio Code",
+  },
+  metadataBase: new URL("https://studiocode.com.ua"),
+  alternates: {
+    canonical: "https://studiocode.com.ua",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

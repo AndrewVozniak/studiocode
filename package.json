@@ -1,5 +1,5 @@
 {
-  "name": "oria",
+  "name": "studiocode",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "framer-motion": "^12.35.1",
     "lucide-react": "^0.577.0",
     "next": "16.1.6",
+    "nodemailer": "^8.0.2",
     "postcss": "^8.5.8",
     "react": "19.2.3",
     "react-dom": "19.2.3",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",

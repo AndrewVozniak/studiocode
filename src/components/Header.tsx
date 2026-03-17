@@ -9,12 +9,12 @@ import { translations, t, Locale } from "@/i18n/translations";
 const locales: { key: Locale; label: string }[] = [
   { key: "en", label: "EN" },
   { key: "ua", label: "UA" },
-  { key: "ru", label: "RU" },
 ];
 
 const navLinks = [
-  { href: "#work", key: "portfolio" as const },
   { href: "#services", key: "services" as const },
+  { href: "#about", key: "about" as const },
+  { href: "#work", key: "portfolio" as const },
   { href: "#process", key: "process" as const },
   { href: "#contact", key: "contact" as const },
 ];
@@ -26,8 +26,8 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style={{ background: "var(--color-bg-primary)", opacity: 0.97 }}>
       <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="#" className="text-sm font-medium tracking-[0.2em] uppercase">
-          Oria<span style={{ color: "var(--color-accent)" }}>.</span>
+        <a href="#" className="text-sm font-medium tracking-[0.15em] uppercase">
+          Studio<span style={{ color: "var(--color-accent)" }}>Code</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-8">

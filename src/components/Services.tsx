@@ -33,7 +33,7 @@ export default function Services() {
           viewport={{ once: true }}
         >
           More Than Just<br />
-          <span style={{ color: "var(--color-accent)" }}>An Agency</span>
+          <span style={{ color: "var(--color-accent)" }}>Code</span>
         </motion.h2>
 
         <div className="accent-rule mb-0" />

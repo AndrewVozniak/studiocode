@@ -3,17 +3,17 @@
 import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { translations, t } from "@/i18n/translations";
-import { processSteps } from "@/data/process";
 
-export default function Process() {
+export default function About() {
   const { locale } = useApp();
+  const a = translations.about;
 
   return (
-    <section id="process" className="py-24 px-6">
+    <section id="about" className="py-24 px-6" style={{ background: "var(--color-bg-secondary)" }}>
       <div className="max-w-[1400px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          {/* Left - title */}
-          <div className="lg:w-2/5 lg:sticky lg:top-24 lg:self-start">
+          {/* Left */}
+          <div className="lg:w-1/2">
             <motion.div
               className="flex items-center gap-3 mb-4"
               initial={{ opacity: 0 }}
@@ -21,25 +21,44 @@ export default function Process() {
               viewport={{ once: true }}
             >
               <span className="w-10 h-[1px]" style={{ background: "var(--color-accent)" }} />
-              <span className="font-mono text-xs tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">{t(translations.process.title, locale)}</span>
+              <span className="font-mono text-xs tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">
+                {t(a.title, locale)}
+              </span>
             </motion.div>
+
             <motion.h2
-              className="text-5xl sm:text-6xl font-medium tracking-[-0.035em] leading-[0.92]"
+              className="text-5xl sm:text-6xl font-medium tracking-[-0.035em] leading-[0.92] mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {locale === "ua" ? "Від ідеї" : "From idea"}<br />
-              {locale === "ua" ? "до " : "to "}<span style={{ color: "var(--color-accent)" }}>{locale === "ua" ? "запуску" : "launch"}</span>
+              {t(a.heading, locale).split("\n").map((line, i) => (
+                <span key={i} className="block">
+                  {i === 1 ? (
+                    <span style={{ color: "var(--color-accent)" }}>{line}</span>
+                  ) : (
+                    line
+                  )}
+                </span>
+              ))}
             </motion.h2>
+
+            <motion.p
+              className="text-[var(--color-text-secondary)] leading-relaxed max-w-lg text-lg"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              {t(a.description, locale)}
+            </motion.p>
           </div>
 
-          {/* Right - steps */}
-          <div className="lg:w-3/5">
+          {/* Right - Values */}
+          <div className="lg:w-1/2">
             <div className="accent-rule mb-0" />
-            {processSteps.map((step, i) => (
+            {a.values.map((value, i) => (
               <motion.div
-                key={step.number}
+                key={i}
                 className="py-8 border-b border-[var(--color-border)] group hover:bg-[var(--color-accent-dim)] transition-colors duration-300 -mx-4 px-4 rounded-lg"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -48,12 +67,12 @@ export default function Process() {
               >
                 <div className="flex items-start gap-6">
                   <span className="font-mono text-xs shrink-0 mt-0.5" style={{ color: "var(--color-accent)" }}>
-                    {step.number}
+                    0{i + 1}
                   </span>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">{t(step.title, locale)}</h3>
+                    <h3 className="text-xl font-medium mb-2">{t(value.title, locale)}</h3>
                     <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-md">
-                      {t(step.description, locale)}
+                      {t(value.description, locale)}
                     </p>
                   </div>
                 </div>
