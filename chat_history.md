@@ -42,3 +42,21 @@ Next.js 16.1.6 · React 19 · TypeScript · Tailwind CSS 4 · Framer Motion · N
 ### USER
 ты выполняешь гит команды. иди делай. отдельную репу надо доступы у тебя есть
 
+### ASSISTANT
+Edit plan failed — check activity log for details.
+
+### USER
+CRITICAL: Fix code, do NOT deploy or modify nginx/systemd. Steps: 1) Read CLAUDE.md Deploy Info for service name. 2) Read next.config file — if syntax is broken (values in import line, etc), REWRITE it cleanly. 3) Run npm run build — if fails, fix the source file and retry until it passes. 4) Check systemd: systemctl status SERVICE and journalctl -u SERVICE -n 20 — if crashing, fix cause and restart. 5) Curl deploy URL, check HTML/CSS/JS load. 6) Report what was fixed. NEVER deploy, only fix code.
+
+### ASSISTANT
+**Edit Plan** — 5 stages:
+
+1. **Read config files** — Read CLAUDE.md for service name, then read next.config file to check for syntax issues
+2. **Fix next.config if broken** — If next.config has syntax errors (values in import line or other issues), rewrite it cleanly
+3. **Run build and fix errors** — Run npm run build, identify any compilation or type errors in source files, fix them, and retry until build passes
+4. **Check systemd service health** — Run systemctl status and journalctl for the service to identify runtime crashes, then fix the root cause and restart
+5. **Verify and report** — Curl the deploy URL to confirm HTML/CSS/JS loads correctly, then report all fixes made
+
+### ASSISTANT
+Edit plan failed — check activity log for details.
+

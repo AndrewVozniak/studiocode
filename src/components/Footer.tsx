@@ -1,86 +1,202 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useApp } from "@/context/AppContext";
-import { translations, t } from "@/i18n/translations";
+import { t } from "@/i18n/translations";
+
+const content = {
+  tagline: {
+    en: "Building software that drives growth.",
+    ua: "Створюємо софт, що рухає бізнес.",
+  },
+  quickLinks: { en: "Quick Links", ua: "Швидкі посилання" },
+  servicesTitle: { en: "Services", ua: "Послуги" },
+  legal: { en: "Legal", ua: "Правове" },
+  privacy: { en: "Privacy Policy", ua: "Політика конфіденційності" },
+  rights: { en: "All rights reserved.", ua: "Всі права захищені." },
+};
+
+const quickLinks = [
+  { label: { en: "Services", ua: "Послуги" }, href: "#services" },
+  { label: { en: "About", ua: "Про нас" }, href: "#about" },
+  { label: { en: "Tech Stack", ua: "Стек" }, href: "#tech" },
+  { label: { en: "Process", ua: "Процес" }, href: "#process" },
+  { label: { en: "Contact", ua: "Контакт" }, href: "#contact" },
+];
+
+const serviceLinks = [
+  { label: { en: "Web Development", ua: "Веб-розробка" }, href: "#services" },
+  { label: { en: "Bots & Automation", ua: "Боти та автоматизація" }, href: "#services" },
+  { label: { en: "UI/UX Design", ua: "UI/UX Дизайн" }, href: "#services" },
+  { label: { en: "Backend & API", ua: "Backend та API" }, href: "#services" },
+];
 
 export default function Footer() {
   const { locale } = useApp();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--color-border)] pt-16 pb-8 px-6">
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col md:flex-row justify-between gap-12 mb-16">
+    <footer style={{ position: "relative", background: "var(--color-bg-secondary)" }}>
+      {/* Gradient top border */}
+      <div className="gradient-line" />
+
+      <div className="container-main" style={{ padding: "64px 24px 32px" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gap: 48,
+            marginBottom: 48,
+          }}
+        >
           {/* Brand */}
-          <div className="md:max-w-xs">
-            <div className="text-sm font-medium tracking-[0.15em] uppercase mb-4">
-              Studio<span style={{ color: "var(--color-accent)" }}>Code</span>
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 12, letterSpacing: "-0.02em" }}>
+              Studio<span className="gradient-text">Code</span>
             </div>
-            <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
-              {t(translations.footer.tagline, locale)}
+            <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)", maxWidth: 280 }}>
+              {t(content.tagline, locale)}
             </p>
+            <div style={{ marginTop: 16, fontSize: 14, color: "var(--color-text-secondary)" }}>
+              info@studiocode.com.ua
+            </div>
           </div>
 
-          {/* Links */}
-          <div className="flex flex-wrap gap-12 sm:gap-20">
-            <div>
-              <div className="mono mb-5" style={{ color: "var(--color-accent)" }}>Sitemap</div>
-              <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
-                {[
-                  { href: "#services", label: "Services" },
-                  { href: "#about", label: "About" },
-                  { href: "#work", label: "Work" },
-                  { href: "#process", label: "Process" },
-                  { href: "#contact", label: "Contact" },
-                ].map((l) => (
-                  <li key={l.href}>
-                    <a href={l.href} className="hover:text-[var(--color-text-primary)] transition-colors">
-                      {l.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Quick Links */}
+          <div>
+            <h4
+              className="mono"
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                marginBottom: 20,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              {t(content.quickLinks, locale)}
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {quickLinks.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  style={{
+                    fontSize: 14,
+                    color: "var(--color-text-secondary)",
+                    textDecoration: "none",
+                    transition: "color 0.2s, transform 0.2s",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--color-text-primary)";
+                    e.currentTarget.style.transform = "translateX(4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--color-text-secondary)";
+                    e.currentTarget.style.transform = "translateX(0)";
+                  }}
+                >
+                  {t(link.label, locale)}
+                </a>
+              ))}
             </div>
+          </div>
 
-            <div>
-              <div className="mono mb-5" style={{ color: "var(--color-accent)" }}>Connect</div>
-              <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
-                {[
-                  { label: "Email", href: "mailto:info@studiocode.com.ua" },
-                  { label: "Telegram", href: "#" },
-                  { label: "LinkedIn", href: "#" },
-                  { label: "GitHub", href: "#" },
-                ].map((l) => (
-                  <li key={l.label}>
-                    <a
-                      href={l.href}
-                      className="hover:text-[var(--color-text-primary)] transition-colors inline-flex items-center gap-1.5"
-                    >
-                      {l.label}
-                      <ArrowUpRight size={11} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
+          {/* Services */}
+          <div>
+            <h4
+              className="mono"
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                marginBottom: 20,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              {t(content.servicesTitle, locale)}
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              {serviceLinks.map((link, i) => (
+                <a
+                  key={i}
+                  href={link.href}
+                  style={{
+                    fontSize: 14,
+                    color: "var(--color-text-secondary)",
+                    textDecoration: "none",
+                    transition: "color 0.2s, transform 0.2s",
+                    display: "inline-block",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "var(--color-text-primary)";
+                    e.currentTarget.style.transform = "translateX(4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "var(--color-text-secondary)";
+                    e.currentTarget.style.transform = "translateX(0)";
+                  }}
+                >
+                  {t(link.label, locale)}
+                </a>
+              ))}
             </div>
+          </div>
 
-            <div>
-              <div className="mono mb-5" style={{ color: "var(--color-accent)" }}>{t(translations.footer.legal, locale)}</div>
-              <ul className="space-y-3 text-sm text-[var(--color-text-secondary)]">
-                <li>
-                  <a href="/privacy" className="hover:text-[var(--color-text-primary)] transition-colors">
-                    {t(translations.footer.privacy, locale)}
-                  </a>
-                </li>
-              </ul>
+          {/* Legal */}
+          <div>
+            <h4
+              className="mono"
+              style={{
+                fontSize: 12,
+                fontWeight: 600,
+                marginBottom: 20,
+                textTransform: "uppercase",
+                letterSpacing: "0.08em",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              {t(content.legal, locale)}
+            </h4>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <Link
+                href="/privacy"
+                style={{
+                  fontSize: 14,
+                  color: "var(--color-text-secondary)",
+                  textDecoration: "none",
+                  transition: "color 0.2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text-primary)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-text-secondary)")}
+              >
+                {t(content.privacy, locale)}
+              </Link>
             </div>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="border-t border-[var(--color-border)] pt-6 flex flex-col sm:flex-row justify-between gap-4 mono">
-          <span>&copy; {new Date().getFullYear()} Studio Code</span>
-          <span className="text-[var(--color-text-secondary)]">info@studiocode.com.ua</span>
+        {/* Bottom bar */}
+        <div
+          style={{
+            borderTop: "1px solid var(--color-border)",
+            paddingTop: 24,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <p style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
+            &copy; {year} Studio Code. {t(content.rights, locale)}
+          </p>
+          <p style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
+            Made in Ukraine
+          </p>
         </div>
       </div>
     </footer>

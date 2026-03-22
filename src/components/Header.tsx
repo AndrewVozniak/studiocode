@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useApp } from "@/context/AppContext";
-import { translations, t, Locale } from "@/i18n/translations";
+import { t, Locale } from "@/i18n/translations";
 
 const locales: { key: Locale; label: string }[] = [
   { key: "en", label: "EN" },
@@ -12,95 +11,171 @@ const locales: { key: Locale; label: string }[] = [
 ];
 
 const navLinks = [
-  { href: "#services", key: "services" as const },
-  { href: "#about", key: "about" as const },
-  { href: "#work", key: "portfolio" as const },
-  { href: "#process", key: "process" as const },
-  { href: "#contact", key: "contact" as const },
+  { href: "#services", key: "services" },
+  { href: "#about", key: "about" },
+  { href: "#tech", key: "tech" },
+  { href: "#process", key: "process" },
+  { href: "#contact", key: "contact" },
 ];
+
+const navLabels: Record<string, { en: string; ua: string }> = {
+  services: { en: "Services", ua: "Послуги" },
+  about: { en: "About", ua: "Про нас" },
+  tech: { en: "Tech Stack", ua: "Стек" },
+  process: { en: "Process", ua: "Процес" },
+  contact: { en: "Contact", ua: "Контакт" },
+};
 
 export default function Header() {
   const { locale, setLocale, theme, toggleTheme } = useApp();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style={{ background: "var(--color-bg-primary)", opacity: 0.97 }}>
-      <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="#" className="text-sm font-medium tracking-[0.15em] uppercase">
-          Studio<span style={{ color: "var(--color-accent)" }}>Code</span>
+    <header
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        background: theme === "dark" ? "rgba(6, 9, 15, 0.85)" : "rgba(250, 251, 254, 0.85)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        borderBottom: "1px solid var(--color-border)",
+      }}
+    >
+      <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+        <a href="#" style={{ fontSize: 20, fontWeight: 700, letterSpacing: "-0.02em", textDecoration: "none", color: "var(--color-text-primary)" }}>
+          Studio<span className="gradient-text">Code</span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <a
               key={link.key}
               href={link.href}
-              className="mono hover:text-[var(--color-text-primary)] transition-colors"
+              style={{
+                fontSize: 14,
+                color: "var(--color-text-secondary)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-text-primary)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-text-secondary)")}
             >
-              {t(translations.nav[link.key], locale)}
+              {t(navLabels[link.key], locale)}
             </a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden sm:flex items-center gap-1 mono">
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div className="hidden sm:flex" style={{ alignItems: "center", gap: 4, fontSize: 13 }}>
             {locales.map((l, i) => (
-              <span key={l.key} className="flex items-center">
+              <span key={l.key} style={{ display: "flex", alignItems: "center" }}>
+                {i > 0 && <span style={{ color: "var(--color-text-muted)", margin: "0 4px" }}>/</span>}
                 <button
                   onClick={() => setLocale(l.key)}
-                  className={`transition-colors ${
-                    locale === l.key ? "text-[var(--color-accent)]" : "hover:text-[var(--color-text-primary)]"
-                  }`}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "4px 6px",
+                    borderRadius: 4,
+                    fontSize: 13,
+                    fontWeight: locale === l.key ? 600 : 400,
+                    color: locale === l.key ? "var(--color-accent)" : "var(--color-text-secondary)",
+                  }}
                 >
                   {l.label}
                 </button>
-                {i < locales.length - 1 && <span className="mx-1.5 text-[var(--color-text-muted)]">/</span>}
               </span>
             ))}
           </div>
 
-          <button onClick={toggleTheme} className="p-1.5 hover:text-[var(--color-accent)] transition-colors" aria-label="Toggle theme">
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+          <button
+            onClick={toggleTheme}
+            style={{
+              background: "none",
+              border: "1px solid var(--color-border)",
+              borderRadius: 8,
+              padding: 8,
+              cursor: "pointer",
+              color: "var(--color-text-secondary)",
+              display: "flex",
+              alignItems: "center",
+            }}
+            aria-label="Toggle theme"
+          >
+            {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          <button onClick={() => setMobileOpen(!mobileOpen)} className="md:hidden p-1.5">
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{
+              background: "none",
+              border: "1px solid var(--color-border)",
+              borderRadius: 8,
+              padding: 8,
+              cursor: "pointer",
+              color: "var(--color-text-secondary)",
+              display: "flex",
+              alignItems: "center",
+            }}
+            aria-label="Menu"
+          >
             {mobileOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
       </div>
 
-      <div className="divider" />
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden"
-            style={{ background: "var(--color-bg-primary)" }}
-          >
-            <nav className="flex flex-col p-6 gap-4">
-              {navLinks.map((link) => (
-                <a key={link.key} href={link.href} onClick={() => setMobileOpen(false)} className="mono text-sm">
-                  {t(translations.nav[link.key], locale)}
-                </a>
-              ))}
-              <div className="flex gap-3 pt-4 border-t border-[var(--color-border)] mono">
-                {locales.map((l) => (
-                  <button
-                    key={l.key}
-                    onClick={() => setLocale(l.key)}
-                    className={locale === l.key ? "text-[var(--color-accent)]" : ""}
-                  >
-                    {l.label}
-                  </button>
-                ))}
-              </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {mobileOpen && (
+        <div
+          className="md:hidden"
+          style={{
+            background: "var(--color-bg-primary)",
+            borderTop: "1px solid var(--color-border)",
+            padding: "16px 24px",
+          }}
+        >
+          {navLinks.map((link) => (
+            <a
+              key={link.key}
+              href={link.href}
+              onClick={() => setMobileOpen(false)}
+              style={{
+                display: "block",
+                padding: "12px 0",
+                fontSize: 16,
+                color: "var(--color-text-secondary)",
+                textDecoration: "none",
+                borderBottom: "1px solid var(--color-border)",
+              }}
+            >
+              {t(navLabels[link.key], locale)}
+            </a>
+          ))}
+          <div style={{ display: "flex", gap: 8, paddingTop: 16 }}>
+            {locales.map((l) => (
+              <button
+                key={l.key}
+                onClick={() => { setLocale(l.key); setMobileOpen(false); }}
+                style={{
+                  background: locale === l.key ? "var(--color-accent)" : "transparent",
+                  color: locale === l.key ? "#fff" : "var(--color-text-secondary)",
+                  border: `1px solid ${locale === l.key ? "var(--color-accent)" : "var(--color-border)"}`,
+                  borderRadius: 6,
+                  padding: "6px 16px",
+                  fontSize: 13,
+                  cursor: "pointer",
+                }}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </header>
   );
 }

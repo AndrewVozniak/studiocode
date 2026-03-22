@@ -1,82 +1,133 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
-import { translations, t } from "@/i18n/translations";
+import { t } from "@/i18n/translations";
+import { useReveal } from "@/hooks/useReveal";
+
+const content = {
+  label: { en: "About Us", ua: "Про нас" },
+  title: { en: "A team that delivers results", ua: "Команда, яка дає результат" },
+  description: {
+    en: "Studio Code is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
+    ua: "Studio Code — українська компанія з розробки ПЗ, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом — створюючи рішення, які швидкі, надійні та масштабовані.",
+  },
+  description2: {
+    en: "Our approach is simple: understand the problem deeply, choose the right technology, and deliver clean code on time. No unnecessary complexity, no wasted budget.",
+    ua: "Наш підхід простий: глибоко зрозуміти проблему, обрати правильну технологію та поставити чистий код вчасно. Без зайвої складності, без зайвих витрат.",
+  },
+};
+
+const values = [
+  {
+    num: "01",
+    title: { en: "Quality First", ua: "Якість понад усе" },
+    desc: {
+      en: "Clean code, best practices, thorough testing. We don't cut corners.",
+      ua: "Чистий код, кращі практики, ретельне тестування. Ми не зрізаємо кути.",
+    },
+  },
+  {
+    num: "02",
+    title: { en: "Transparency", ua: "Прозорість" },
+    desc: {
+      en: "Regular updates, clear communication. You always know where your project stands.",
+      ua: "Регулярні оновлення, чітка комунікація. Ви завжди знаєте статус проєкту.",
+    },
+  },
+  {
+    num: "03",
+    title: { en: "Result-Oriented", ua: "Орієнтація на результат" },
+    desc: {
+      en: "We focus on business outcomes, not just features. Every line of code serves a purpose.",
+      ua: "Ми фокусуємось на бізнес-результатах, а не просто фічах. Кожен рядок коду має мету.",
+    },
+  },
+];
 
 export default function About() {
   const { locale } = useApp();
-  const a = translations.about;
+  const revealRef = useReveal();
 
   return (
-    <section id="about" className="py-24 px-6" style={{ background: "var(--color-bg-secondary)" }}>
-      <div className="max-w-[1400px] mx-auto">
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          {/* Left */}
-          <div className="lg:w-1/2">
-            <motion.div
-              className="flex items-center gap-3 mb-4"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+    <section
+      id="about"
+      className="section noise-overlay"
+      ref={revealRef}
+      style={{ background: "var(--color-bg-secondary)", position: "relative" }}
+    >
+      <div className="container-main" style={{ position: "relative", zIndex: 1 }}>
+        <div
+          style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}
+          className="lg:grid-cols-[1.2fr_0.8fr]"
+        >
+          {/* Left — text */}
+          <div>
+            <span className="section-label reveal">{t(content.label, locale)}</span>
+            <h2
+              className="reveal reveal-delay-1"
+              style={{
+                fontSize: "clamp(28px, 4vw, 42px)",
+                fontWeight: 700,
+                letterSpacing: "-0.02em",
+                marginBottom: 24,
+              }}
             >
-              <span className="w-10 h-[1px]" style={{ background: "var(--color-accent)" }} />
-              <span className="font-mono text-xs tracking-[0.15em] uppercase text-[var(--color-text-secondary)]">
-                {t(a.title, locale)}
-              </span>
-            </motion.div>
-
-            <motion.h2
-              className="text-5xl sm:text-6xl font-medium tracking-[-0.035em] leading-[0.92] mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              {t(content.title, locale)}
+            </h2>
+            <p
+              className="reveal reveal-delay-2"
+              style={{
+                fontSize: 17,
+                lineHeight: 1.8,
+                color: "var(--color-text-secondary)",
+                marginBottom: 16,
+              }}
             >
-              {t(a.heading, locale).split("\n").map((line, i) => (
-                <span key={i} className="block">
-                  {i === 1 ? (
-                    <span style={{ color: "var(--color-accent)" }}>{line}</span>
-                  ) : (
-                    line
-                  )}
-                </span>
-              ))}
-            </motion.h2>
-
-            <motion.p
-              className="text-[var(--color-text-secondary)] leading-relaxed max-w-lg text-lg"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              {t(content.description, locale)}
+            </p>
+            <p
+              className="reveal reveal-delay-3"
+              style={{
+                fontSize: 17,
+                lineHeight: 1.8,
+                color: "var(--color-text-secondary)",
+              }}
             >
-              {t(a.description, locale)}
-            </motion.p>
+              {t(content.description2, locale)}
+            </p>
           </div>
 
-          {/* Right - Values */}
-          <div className="lg:w-1/2">
-            <div className="accent-rule mb-0" />
-            {a.values.map((value, i) => (
-              <motion.div
+          {/* Right — value cards with accent left border */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+            {values.map((v, i) => (
+              <div
                 key={i}
-                className="py-8 border-b border-[var(--color-border)] group hover:bg-[var(--color-accent-dim)] transition-colors duration-300 -mx-4 px-4 rounded-lg"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                className={`reveal reveal-delay-${i + 1}`}
+                style={{
+                  padding: "24px 28px",
+                  borderRadius: 14,
+                  background: "var(--color-card)",
+                  borderLeft: "3px solid transparent",
+                  borderImage: "linear-gradient(180deg, var(--color-accent), #a78bfa) 1",
+                  position: "relative",
+                  transition: "transform 0.3s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(4px)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
               >
-                <div className="flex items-start gap-6">
-                  <span className="font-mono text-xs shrink-0 mt-0.5" style={{ color: "var(--color-accent)" }}>
-                    0{i + 1}
+                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 10 }}>
+                  <span
+                    className="mono gradient-text"
+                    style={{ fontSize: 22, fontWeight: 700, lineHeight: 1 }}
+                  >
+                    {v.num}
                   </span>
-                  <div>
-                    <h3 className="text-xl font-medium mb-2">{t(value.title, locale)}</h3>
-                    <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-md">
-                      {t(value.description, locale)}
-                    </p>
-                  </div>
+                  <h3 style={{ fontSize: 16, fontWeight: 600 }}>{t(v.title, locale)}</h3>
                 </div>
-              </motion.div>
+                <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+                  {t(v.desc, locale)}
+                </p>
+              </div>
             ))}
           </div>
         </div>
