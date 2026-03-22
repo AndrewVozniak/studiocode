@@ -125,3 +125,12 @@ studiocode.com.ua
 ### ASSISTANT
 Edit plan completed — all 3 stages done.
 
+### USER
+отлично но есть два момента 1) есть проблема с бургером в хедере отображается на десктопе вместе с обычными пунктами, обычные пункты отображаются так-же в мобилке 2) логотип получается очень маленький нечитаемый. может его как свг из пнг сделать возможно либо просто фиксануть как то?
+
+### ASSISTANT
+**Edit Plan** — 2 stages:
+
+1. **Fix responsive nav visibility** — In Header component: add 'hidden md:flex' to desktop nav links container and 'md:hidden' to burger button, so they don't overlap across breakpoints
+2. **Fix logo size and readability** — Increase logo image dimensions in Header (e.g. width/height props or CSS), check if it's rendered via next/image and adjust size. If PNG is blurry at larger sizes, convert to SVG using a tool or replace with a text-based logo fallback
+

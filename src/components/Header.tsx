@@ -50,7 +50,7 @@ export default function Header() {
           <Image src="/logo.png" alt="studiocode.com.ua" width={160} height={40} style={{ objectFit: "contain", maxHeight: 40, width: "auto" }} priority />
         </a>
 
-        <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">
+        <nav style={{ alignItems: "center", gap: 32 }} className="hidden md:flex">
           {navLinks.map((link) => (
             <a
               key={link.key}
@@ -120,7 +120,6 @@ export default function Header() {
               padding: 8,
               cursor: "pointer",
               color: "var(--color-text-secondary)",
-              display: "flex",
               alignItems: "center",
             }}
             aria-label="Menu"
