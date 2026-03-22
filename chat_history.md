@@ -150,3 +150,23 @@ Edit plan completed — all 2 stages done.
 ### ASSISTANT
 Edit plan completed — all 3 stages done.
 
+### USER
+STUDIACODU букву U чуть сьедает. так-же надо сделать небольшой градиент от белого к синему но чтоб нормально смотрелось на белой теме 2) вот эта визуальная часть. так-же левую часть чуть более графеской сделать. сейчас она слишком просто смотрится. остальное все хорошо
+
+### ASSISTANT
+**Edit Plan** — 3 stages:
+
+1. **Fix logo text clipping** — Fix the 'U' letter in STUDIAKODU being clipped — adjust overflow, padding, or letter-spacing on the brand/logo text element in the header or hero
+2. **Add white-to-blue gradient** — Add a subtle gradient (white → blue accent) to a key visual element (e.g. hero title, section divider, or background stripe) that looks good on both dark and light (white) themes
+3. **Enhance hero left side graphics** — Make the left side of the Hero section more visually rich — add decorative elements such as a glowing blob/orb, geometric shapes, code snippet decorations, or a subtle grid pattern to give it more graphic weight
+
+### USER
+STUDIACODU букву U чуть сьедает. так-же надо сделать небольшой градиент от белого к синему но чтоб нормально смотрелось на белой теме 2) вот эта визуальная часть. так-же левую часть логотипа чуть более графеской сделать. сейчас она слишком просто смотрится. остальное все хорошо
+
+### ASSISTANT
+**Edit Plan** — 3 stages:
+
+1. **Fix letter U clipping** — Fix the clipped/cut-off 'U' letter in the STUDIAKODU logotype — likely an overflow:hidden or letter-spacing issue on the logo text container
+2. **Add white-to-blue gradient on logo text** — Apply a subtle horizontal or vertical gradient on the STUDIAKODU text from white to blue accent color, ensuring it looks good on both dark and light themes (use mix-blend-mode or theme-aware color stops)
+3. **Make left logo part more graphical** — Enhance the left decorative/icon part of the logo — add more visual complexity such as geometric shapes, lines, abstract mark, or layered SVG elements to make it look less plain and more like a proper logomark
+

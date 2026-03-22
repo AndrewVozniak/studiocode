@@ -10,12 +10,17 @@ interface LogoSVGProps {
 export default function LogoSVG({ theme, height = 44 }: LogoSVGProps) {
   const uid = useId().replace(/:/g, "");
   const gradId = `gearGrad${uid}`;
-  const textColor = theme === "dark" ? "#EDF2F7" : "#0C1024";
+  const textGradId = `textGrad${uid}`;
+
+  // Dark theme: near-white → blue (readable on dark bg)
+  // Light theme: dark navy → blue (readable on white bg)
+  const textGradStart = theme === "dark" ? "#EDF2F7" : "#0C1024";
+  const textGradEnd = theme === "dark" ? "#3B82F6" : "#2563EB";
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 262 80"
+      viewBox="0 0 295 80"
       style={{ height, width: "auto", display: "block" }}
       aria-label="studiocode.com.ua"
     >
@@ -23,6 +28,10 @@ export default function LogoSVG({ theme, height = 44 }: LogoSVGProps) {
         <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#5BC4EC" />
           <stop offset="100%" stopColor="#1B65B3" />
+        </linearGradient>
+        <linearGradient id={textGradId} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor={textGradStart} />
+          <stop offset="100%" stopColor={textGradEnd} />
         </linearGradient>
       </defs>
 
@@ -63,7 +72,7 @@ export default function LogoSVG({ theme, height = 44 }: LogoSVGProps) {
         fontFamily="Geist, 'Helvetica Neue', Arial, sans-serif"
         fontSize="25"
         fontWeight="700"
-        fill={textColor}
+        fill={`url(#${textGradId})`}
         letterSpacing="1.5"
       >
         STUDIOCODE
