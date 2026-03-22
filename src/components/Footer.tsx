@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useApp } from "@/context/AppContext";
+import LogoSVG from "@/components/LogoSVG";
 import { t } from "@/i18n/translations";
 
 const content = {
@@ -33,7 +33,7 @@ const serviceLinks = [
 ];
 
 export default function Footer() {
-  const { locale } = useApp();
+  const { locale, theme } = useApp();
   const year = new Date().getFullYear();
 
   return (
@@ -53,7 +53,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ marginBottom: 12 }}>
-              <Image src="/logo.png" alt="studiocode.com.ua" width={160} height={40} style={{ objectFit: "contain", maxHeight: 40, width: "auto" }} />
+              <LogoSVG theme={theme} height={42} />
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)", maxWidth: 280 }}>
               {t(content.tagline, locale)}

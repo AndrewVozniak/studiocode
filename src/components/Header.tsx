@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
-import Image from "next/image";
 import { useApp } from "@/context/AppContext";
+import LogoSVG from "@/components/LogoSVG";
 import { t, Locale } from "@/i18n/translations";
 
 const locales: { key: Locale; label: string }[] = [
@@ -47,7 +47,7 @@ export default function Header() {
     >
       <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
         <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <Image src="/logo.png" alt="studiocode.com.ua" width={160} height={40} style={{ objectFit: "contain", maxHeight: 40, width: "auto" }} priority />
+          <LogoSVG theme={theme} height={46} />
         </a>
 
         <nav style={{ alignItems: "center", gap: 32 }} className="hidden md:flex">

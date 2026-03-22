@@ -134,3 +134,19 @@ Edit plan completed — all 3 stages done.
 1. **Fix responsive nav visibility** — In Header component: add 'hidden md:flex' to desktop nav links container and 'md:hidden' to burger button, so they don't overlap across breakpoints
 2. **Fix logo size and readability** — Increase logo image dimensions in Header (e.g. width/height props or CSS), check if it's rendered via next/image and adjust size. If PNG is blurry at larger sizes, convert to SVG using a tool or replace with a text-based logo fallback
 
+### ASSISTANT
+Edit plan completed — all 2 stages done.
+
+### USER
+а мог бы логотип как свг сделать? либо максимально похожее что то. ты вроде можешь читать изображения
+
+### ASSISTANT
+**Edit Plan** — 3 stages:
+
+1. **Inspect current logo** — Find and read the current logo implementation in the codebase (Header component, any logo files or text-based branding) to understand the current visual style, colors, and typography used.
+2. **Create SVG logo component** — Design and create a LogoSVG React component as an inline SVG — combining the 'Studio Code' wordmark or icon mark using the project's color scheme (blue #3B82F6 / #2563EB on dark navy background), matching the existing brand identity.
+3. **Integrate SVG logo** — Replace the current logo rendering in Header and Footer with the new SVG component, ensuring it scales correctly, respects dark/light theme, and works within the basePath deployment setup.
+
+### ASSISTANT
+Edit plan completed — all 3 stages done.
+
