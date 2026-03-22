@@ -32,7 +32,7 @@ const content = {
 };
 
 const terminalLines = [
-  { type: "comment", text: "// Studio Code — your idea, our code" },
+  { type: "comment", text: "// studiocode.com.ua — your idea, our code" },
   { type: "code", parts: [
     { cls: "keyword", text: "const " },
     { cls: "variable", text: "project" },

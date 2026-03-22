@@ -8,8 +8,8 @@ const content = {
   label: { en: "About Us", ua: "Про нас" },
   title: { en: "A team that delivers results", ua: "Команда, яка дає результат" },
   description: {
-    en: "Studio Code is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
-    ua: "Studio Code — українська компанія з розробки ПЗ, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом — створюючи рішення, які швидкі, надійні та масштабовані.",
+    en: "studiocode.com.ua is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
+    ua: "studiocode.com.ua — українська компанія з розробки ПЗ, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом — створюючи рішення, які швидкі, надійні та масштабовані.",
   },
   description2: {
     en: "Our approach is simple: understand the problem deeply, choose the right technology, and deliver clean code on time. No unnecessary complexity, no wasted budget.",
@@ -51,14 +51,22 @@ export default function About() {
   return (
     <section
       id="about"
-      className="section noise-overlay"
+      className="section"
       ref={revealRef}
       style={{ background: "var(--color-bg-secondary)", position: "relative" }}
     >
-      <div className="container-main" style={{ position: "relative", zIndex: 1 }}>
+      {/* Top divider */}
+      <div className="gradient-line" style={{ position: "absolute", top: 0, left: "5%", right: "5%" }} />
+
+      <div className="container-main" style={{ position: "relative" }}>
         <div
-          style={{ display: "grid", gridTemplateColumns: "1fr", gap: 56, alignItems: "start" }}
-          className="lg:grid-cols-[1.2fr_0.8fr]"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: 64,
+            alignItems: "start",
+          }}
+          className="lg:grid-cols-[1.3fr_0.7fr]"
         >
           {/* Left — text */}
           <div>
@@ -66,10 +74,11 @@ export default function About() {
             <h2
               className="reveal reveal-delay-1"
               style={{
-                fontSize: "clamp(28px, 4vw, 42px)",
+                fontSize: "clamp(28px, 4vw, 44px)",
                 fontWeight: 700,
                 letterSpacing: "-0.02em",
-                marginBottom: 24,
+                marginBottom: 28,
+                lineHeight: 1.15,
               }}
             >
               {t(content.title, locale)}
@@ -78,9 +87,9 @@ export default function About() {
               className="reveal reveal-delay-2"
               style={{
                 fontSize: 17,
-                lineHeight: 1.8,
+                lineHeight: 1.85,
                 color: "var(--color-text-secondary)",
-                marginBottom: 16,
+                marginBottom: 20,
               }}
             >
               {t(content.description, locale)}
@@ -89,7 +98,7 @@ export default function About() {
               className="reveal reveal-delay-3"
               style={{
                 fontSize: 17,
-                lineHeight: 1.8,
+                lineHeight: 1.85,
                 color: "var(--color-text-secondary)",
               }}
             >
@@ -97,8 +106,8 @@ export default function About() {
             </p>
           </div>
 
-          {/* Right — value cards with accent left border */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Right — value cards */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             {values.map((v, i) => (
               <div
                 key={i}
@@ -107,24 +116,31 @@ export default function About() {
                   padding: "24px 28px",
                   borderRadius: 14,
                   background: "var(--color-card)",
-                  borderLeft: "3px solid transparent",
-                  borderImage: "linear-gradient(180deg, var(--color-accent), #a78bfa) 1",
+                  border: "1px solid var(--color-border)",
+                  borderLeft: "3px solid var(--color-accent)",
                   position: "relative",
-                  transition: "transform 0.3s",
+                  transition: "transform 0.3s, box-shadow 0.3s",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateX(4px)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateX(0)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateX(6px)";
+                  e.currentTarget.style.boxShadow = "0 8px 30px -8px rgba(99,102,241,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateX(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
                   <span
-                    className="mono gradient-text"
-                    style={{ fontSize: 22, fontWeight: 700, lineHeight: 1 }}
+                    className="mono"
+                    style={{ fontSize: 13, fontWeight: 700, color: "var(--color-accent)", letterSpacing: "0.05em" }}
                   >
                     {v.num}
                   </span>
-                  <h3 style={{ fontSize: 16, fontWeight: 600 }}>{t(v.title, locale)}</h3>
+                  <div style={{ width: 1, height: 14, background: "var(--color-border)" }} />
+                  <h3 style={{ fontSize: 15, fontWeight: 650, letterSpacing: "-0.01em" }}>{t(v.title, locale)}</h3>
                 </div>
-                <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
+                <p style={{ fontSize: 14, lineHeight: 1.75, color: "var(--color-text-secondary)" }}>
                   {t(v.desc, locale)}
                 </p>
               </div>
@@ -132,6 +148,9 @@ export default function About() {
           </div>
         </div>
       </div>
+
+      {/* Bottom divider */}
+      <div className="gradient-line" style={{ position: "absolute", bottom: 0, left: "5%", right: "5%" }} />
     </section>
   );
 }

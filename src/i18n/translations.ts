@@ -36,22 +36,6 @@ export const translations = {
       ua: "Технології які ми використовуємо",
     },
   },
-  portfolio: {
-    title: { en: "Recent Work", ua: "Останні роботи" },
-    all: { en: "All", ua: "Всі" },
-  },
-  stats: {
-    title: {
-      en: "Trusted by businesses across Ukraine and beyond",
-      ua: "Нам довіряють компанії з усієї України та за її межами",
-    },
-  },
-  reviews: {
-    title: {
-      en: "What Clients Say",
-      ua: "Що кажуть клієнти",
-    },
-  },
   process: {
     title: { en: "How We Work", ua: "Як ми працюємо" },
   },
@@ -62,8 +46,8 @@ export const translations = {
       ua: "Команда яка\nДає результат",
     },
     description: {
-      en: "Studio Code is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
-      ua: "Studio Code — українська компанія з розробки програмного забезпечення, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом та підприємствами — створюючи рішення, які швидкі, надійні та масштабовані.",
+      en: "studiocode.com.ua is a Ukrainian software development company focused on building clean, efficient digital products. We work with startups, SMBs, and enterprises — delivering solutions that are fast, reliable, and built to scale.",
+      ua: "studiocode.com.ua — українська компанія з розробки програмного забезпечення, яка створює чисті та ефективні цифрові продукти. Ми працюємо зі стартапами, малим та середнім бізнесом та підприємствами — створюючи рішення, які швидкі, надійні та масштабовані.",
     },
     values: [
       {

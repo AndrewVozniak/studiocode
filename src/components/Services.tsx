@@ -71,6 +71,8 @@ const services = [
   },
 ];
 
+const nums = ["01", "02", "03", "04", "05", "06"];
+
 export default function Services() {
   const { locale } = useApp();
   const revealRef = useReveal();
@@ -82,7 +84,7 @@ export default function Services() {
         <h2
           className="reveal reveal-delay-1"
           style={{
-            fontSize: "clamp(28px, 4vw, 42px)",
+            fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
             marginBottom: 12,
@@ -96,45 +98,97 @@ export default function Services() {
             fontSize: 17,
             color: "var(--color-text-secondary)",
             marginBottom: 56,
-            maxWidth: 500,
+            maxWidth: 520,
+            lineHeight: 1.7,
           }}
         >
           {t(content.subtitle, locale)}
         </p>
 
-        {/* Bento grid */}
-        <div className="bento-grid">
+        {/* Uniform 3-col grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+            gap: 24,
+          }}
+        >
           {services.map((s, i) => {
             const Icon = s.icon;
             return (
               <div
                 key={i}
-                className={`gradient-border-card reveal reveal-delay-${Math.min(i + 1, 5)}`}
+                className={`reveal reveal-delay-${Math.min(i + 1, 5)}`}
+                style={{
+                  padding: "32px",
+                  borderRadius: 16,
+                  border: "1px solid var(--color-border)",
+                  background: "var(--color-card)",
+                  position: "relative",
+                  overflow: "hidden",
+                  transition: "border-color 0.3s, transform 0.3s, box-shadow 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(99,102,241,0.4)";
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = "0 16px 48px -12px rgba(99,102,241,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                <div style={{ display: "flex", alignItems: "flex-start", gap: 16, marginBottom: 16 }}>
+                {/* Top accent line on hover via gradient */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 2,
+                    background: "linear-gradient(90deg, var(--color-accent), #a78bfa)",
+                    opacity: 0.5,
+                  }}
+                />
+
+                {/* Number + Icon row */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
                   <div
                     style={{
                       width: 48,
                       height: 48,
                       borderRadius: 12,
-                      background: "linear-gradient(135deg, var(--color-accent-dim), rgba(139,92,246,0.06))",
+                      background: "linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.08))",
                       border: "1px solid var(--color-border)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      flexShrink: 0,
                     }}
                   >
                     <Icon size={22} style={{ color: "var(--color-accent)" }} />
                   </div>
-                  <div>
-                    <h3 style={{ fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{t(s.title, locale)}</h3>
-                    <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)" }}>
-                      {t(s.desc, locale)}
-                    </p>
-                  </div>
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: "var(--color-text-muted)",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    {nums[i]}
+                  </span>
                 </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: "auto" }}>
+
+                <h3 style={{ fontSize: 18, fontWeight: 650, marginBottom: 10, letterSpacing: "-0.01em" }}>
+                  {t(s.title, locale)}
+                </h3>
+                <p style={{ fontSize: 14, lineHeight: 1.75, color: "var(--color-text-secondary)", marginBottom: 24 }}>
+                  {t(s.desc, locale)}
+                </p>
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {s.tags.map((tag) => (
                     <span
                       key={tag}
@@ -145,7 +199,8 @@ export default function Services() {
                         borderRadius: 6,
                         background: "var(--color-bg-secondary)",
                         border: "1px solid var(--color-border)",
-                        color: "var(--color-text-muted)",
+                        color: "var(--color-text-secondary)",
+                        letterSpacing: "0.02em",
                       }}
                     >
                       {tag}

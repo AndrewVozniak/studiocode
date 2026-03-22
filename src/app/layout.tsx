@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Studio Code — Custom Software Development in Ukraine",
+  title: "studiocode.com.ua — Custom Software Development in Ukraine",
   description:
     "Ukrainian software development company. Full-stack web development, automation, UI/UX design, and MVP delivery. From idea to production.",
   keywords: [
@@ -34,12 +34,12 @@ export const metadata: Metadata = {
     "веб-розробка",
   ],
   openGraph: {
-    title: "Studio Code — Custom Software Development",
+    title: "studiocode.com.ua — Custom Software Development",
     description:
       "We build software that drives growth. Custom web development, automation & design.",
     type: "website",
     url: "https://studiocode.com.ua",
-    siteName: "Studio Code",
+    siteName: "studiocode.com.ua",
   },
   metadataBase: new URL("https://studiocode.com.ua"),
   alternates: {

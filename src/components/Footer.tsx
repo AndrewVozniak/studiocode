@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useApp } from "@/context/AppContext";
 import { t } from "@/i18n/translations";
 
@@ -51,8 +52,8 @@ export default function Footer() {
         >
           {/* Brand */}
           <div>
-            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 12, letterSpacing: "-0.02em" }}>
-              Studio<span className="gradient-text">Code</span>
+            <div style={{ marginBottom: 12 }}>
+              <Image src="/logo.png" alt="studiocode.com.ua" width={160} height={40} style={{ objectFit: "contain", maxHeight: 40, width: "auto" }} />
             </div>
             <p style={{ fontSize: 14, lineHeight: 1.7, color: "var(--color-text-secondary)", maxWidth: 280 }}>
               {t(content.tagline, locale)}
@@ -192,7 +193,7 @@ export default function Footer() {
           }}
         >
           <p style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
-            &copy; {year} Studio Code. {t(content.rights, locale)}
+            &copy; {year} studiocode.com.ua. {t(content.rights, locale)}
           </p>
           <p style={{ fontSize: 13, color: "var(--color-text-muted)" }}>
             Made in Ukraine

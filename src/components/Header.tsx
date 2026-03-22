@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Moon, Sun, Menu, X } from "lucide-react";
+import Image from "next/image";
 import { useApp } from "@/context/AppContext";
 import { t, Locale } from "@/i18n/translations";
 
@@ -38,15 +39,15 @@ export default function Header() {
         left: 0,
         right: 0,
         zIndex: 50,
-        background: theme === "dark" ? "rgba(6, 9, 15, 0.85)" : "rgba(250, 251, 254, 0.85)",
+        background: theme === "dark" ? "rgba(13, 17, 23, 0.88)" : "rgba(250, 251, 254, 0.88)",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         borderBottom: "1px solid var(--color-border)",
       }}
     >
       <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
-        <a href="#" style={{ fontSize: 20, fontWeight: 700, letterSpacing: "-0.02em", textDecoration: "none", color: "var(--color-text-primary)" }}>
-          Studio<span className="gradient-text">Code</span>
+        <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <Image src="/logo.png" alt="studiocode.com.ua" width={160} height={40} style={{ objectFit: "contain", maxHeight: 40, width: "auto" }} priority />
         </a>
 
         <nav style={{ display: "flex", alignItems: "center", gap: 32 }} className="hidden md:flex">

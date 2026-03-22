@@ -92,7 +92,7 @@ export default function Contact() {
       />
 
       <div className="container-main" style={{ position: "relative", zIndex: 1 }}>
-        <div style={{ textAlign: "center", marginBottom: 56 }}>
+        <div style={{ textAlign: "center", marginBottom: 64 }}>
           <span className="section-label reveal" style={{ justifyContent: "center" }}>{t(content.label, locale)}</span>
           <h2
             className="reveal reveal-delay-1"
@@ -112,6 +112,7 @@ export default function Contact() {
               color: "var(--color-text-secondary)",
               maxWidth: 500,
               margin: "0 auto",
+              lineHeight: 1.7,
             }}
           >
             {t(content.subtitle, locale)}
@@ -167,10 +168,10 @@ export default function Contact() {
                     <Icon size={16} style={{ color: "var(--color-accent)" }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: 12, color: "var(--color-text-muted)", marginBottom: 2 }}>
+                    <div style={{ fontSize: 11, color: "var(--color-text-secondary)", marginBottom: 3, textTransform: "uppercase", letterSpacing: "0.06em", fontFamily: "var(--font-mono)" }}>
                       {t(item.label, locale)}
                     </div>
-                    <div style={{ fontSize: 14, fontWeight: 500 }}>{item.value}</div>
+                    <div style={{ fontSize: 14, fontWeight: 500, color: "var(--color-text-primary)" }}>{item.value}</div>
                   </div>
                 </div>
               );
@@ -205,30 +206,30 @@ export default function Contact() {
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <input type="text" name="website" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="sm:grid-cols-2">
-                <div style={{ gridColumn: "span 1" }}>
-                  <label style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6, display: "block" }}>
+              <div style={{ display: "grid", gap: 16 }} className="grid-cols-1 sm:grid-cols-2">
+                <div>
+                  <label style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", marginBottom: 8, display: "block" }}>
                     {t(content.name, locale)} *
                   </label>
                   <input name="name" required className="form-input" placeholder={t(content.name, locale)} />
                 </div>
-                <div style={{ gridColumn: "span 1" }}>
-                  <label style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6, display: "block" }}>
+                <div>
+                  <label style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", marginBottom: 8, display: "block" }}>
                     {t(content.email, locale)} *
                   </label>
                   <input name="email" type="email" required className="form-input" placeholder="email@example.com" />
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="sm:grid-cols-2">
+              <div style={{ display: "grid", gap: 16 }} className="grid-cols-1 sm:grid-cols-2">
                 <div>
-                  <label style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6, display: "block" }}>
+                  <label style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", marginBottom: 8, display: "block" }}>
                     {t(content.phone, locale)}
                   </label>
                   <input name="phone" className="form-input" placeholder="+380..." />
                 </div>
                 <div>
-                  <label style={{ fontSize: 13, color: "var(--color-text-secondary)", marginBottom: 6, display: "block" }}>
+                  <label style={{ fontSize: 13, fontWeight: 500, color: "var(--color-text-primary)", marginBottom: 8, display: "block" }}>
                     {t(content.projectType, locale)}
                   </label>
                   <select name="projectType" className="form-input" style={{ cursor: "pointer" }}>

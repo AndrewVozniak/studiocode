@@ -43,13 +43,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("sc-theme", next);
   };
 
-  if (!mounted) {
-    return <div style={{ visibility: "hidden" }}>{children}</div>;
-  }
-
   return (
     <AppContext.Provider value={{ locale, setLocale, theme, toggleTheme }}>
-      {children}
+      {!mounted ? <div style={{ visibility: "hidden" }}>{children}</div> : children}
     </AppContext.Provider>
   );
 }

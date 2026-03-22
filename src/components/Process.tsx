@@ -30,7 +30,7 @@ const steps = [
     title: { en: "Design & Planning", ua: "Дизайн і планування" },
     desc: {
       en: "Wireframes, UI mockups, and technical architecture. You approve every visual and structural decision before development starts.",
-      ua: "Вайрфрейми, UI-макети та технічна архітектура. Ви затверджуєте кожне візуальне та структурне рішення до початку розробки.",
+      ua: "Вайрфрейми, UI-макети та технічна архітектура. Ви затверджуєте кожне рішення до початку розробки.",
     },
   },
   {
@@ -69,7 +69,7 @@ export default function Process() {
         <h2
           className="reveal reveal-delay-1"
           style={{
-            fontSize: "clamp(28px, 4vw, 42px)",
+            fontSize: "clamp(28px, 4vw, 44px)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
             marginBottom: 12,
@@ -83,146 +83,104 @@ export default function Process() {
             fontSize: 17,
             color: "var(--color-text-secondary)",
             marginBottom: 64,
-            maxWidth: 500,
+            maxWidth: 520,
+            lineHeight: 1.7,
           }}
         >
           {t(content.subtitle, locale)}
         </p>
 
-        {/* Timeline */}
-        <div style={{ position: "relative" }}>
-          {/* Vertical connecting line — desktop: center, mobile: left */}
-          <div
-            className="hidden md:block"
-            style={{
-              position: "absolute",
-              top: 40,
-              bottom: 40,
-              left: "50%",
-              width: 2,
-              transform: "translateX(-50%)",
-              background: "linear-gradient(180deg, var(--color-accent), #a78bfa, transparent)",
-              opacity: 0.4,
-            }}
-          />
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 48 }}>
-            {steps.map((step, i) => {
-              const Icon = step.icon;
-              const isEven = i % 2 === 0;
-              return (
-                <div
-                  key={i}
-                  className={`reveal reveal-delay-${Math.min(i + 1, 4)}`}
+        {/* 2×2 cards grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+            gap: 24,
+          }}
+        >
+          {steps.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <div
+                key={i}
+                className={`reveal reveal-delay-${Math.min(i + 1, 4)}`}
+                style={{
+                  padding: "32px",
+                  borderRadius: 16,
+                  border: "1px solid var(--color-border)",
+                  background: "var(--color-card)",
+                  position: "relative",
+                  overflow: "hidden",
+                  transition: "border-color 0.3s, transform 0.3s",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(99,102,241,0.35)";
+                  e.currentTarget.style.transform = "translateY(-3px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--color-border)";
+                  e.currentTarget.style.transform = "translateY(0)";
+                }}
+              >
+                {/* Step number — large watermark in corner */}
+                <span
+                  className="mono"
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr",
-                    gap: 24,
-                    alignItems: "center",
+                    position: "absolute",
+                    top: 20,
+                    right: 24,
+                    fontSize: 42,
+                    fontWeight: 800,
+                    color: "var(--color-border)",
+                    lineHeight: 1,
+                    userSelect: "none",
+                    letterSpacing: "-0.04em",
                   }}
                 >
-                  {/* Desktop layout: alternating sides */}
-                  <div
-                    className="hidden md:grid"
-                    style={{
-                      gridTemplateColumns: "1fr 60px 1fr",
-                      alignItems: "center",
-                      gap: 0,
-                    }}
-                  >
-                    {/* Left side */}
-                    <div style={{ textAlign: isEven ? "right" : "left", padding: isEven ? "0 32px 0 0" : "0 0 0 32px" }}>
-                      {isEven ? (
-                        <StepContent step={step} locale={locale} Icon={Icon} />
-                      ) : (
-                        <div />
-                      )}
-                    </div>
+                  {step.num}
+                </span>
 
-                    {/* Center node */}
-                    <div style={{ display: "flex", justifyContent: "center" }}>
-                      <div
-                        style={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: 14,
-                          background: "linear-gradient(135deg, var(--color-accent), #a78bfa)",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          boxShadow: "0 0 30px rgba(99,102,241,0.3), 0 0 60px rgba(99,102,241,0.1)",
-                          position: "relative",
-                          zIndex: 2,
-                        }}
-                      >
-                        <Icon size={20} style={{ color: "#fff" }} />
-                      </div>
-                    </div>
-
-                    {/* Right side */}
-                    <div style={{ textAlign: isEven ? "left" : "right", padding: isEven ? "0 0 0 32px" : "0 32px 0 0" }}>
-                      {!isEven ? (
-                        <StepContent step={step} locale={locale} Icon={Icon} />
-                      ) : (
-                        <div />
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Mobile layout */}
-                  <div
-                    className="flex md:hidden"
-                    style={{
-                      gap: 20,
-                      alignItems: "flex-start",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: 44,
-                        height: 44,
-                        borderRadius: 12,
-                        background: "linear-gradient(135deg, var(--color-accent), var(--color-accent-cyan))",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <Icon size={18} style={{ color: "#fff" }} />
-                    </div>
-                    <StepContent step={step} locale={locale} Icon={Icon} />
-                  </div>
+                {/* Icon */}
+                <div
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 12,
+                    background: "linear-gradient(135deg, rgba(99,102,241,0.14), rgba(167,139,250,0.08))",
+                    border: "1px solid var(--color-border)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginBottom: 20,
+                  }}
+                >
+                  <Icon size={22} style={{ color: "var(--color-accent)" }} />
                 </div>
-              );
-            })}
-          </div>
+
+                <h3
+                  style={{
+                    fontSize: 18,
+                    fontWeight: 650,
+                    letterSpacing: "-0.01em",
+                    marginBottom: 12,
+                  }}
+                >
+                  {t(step.title, locale)}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 14,
+                    lineHeight: 1.8,
+                    color: "var(--color-text-secondary)",
+                  }}
+                >
+                  {t(step.desc, locale)}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
-  );
-}
-
-function StepContent({
-  step,
-  locale,
-}: {
-  step: (typeof steps)[0];
-  locale: "en" | "ua";
-  Icon: React.ComponentType;
-}) {
-  return (
-    <div>
-      <span
-        className="mono gradient-text"
-        style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.05em", marginBottom: 8, display: "block" }}
-      >
-        STEP {step.num}
-      </span>
-      <h3 style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>{t(step.title, locale)}</h3>
-      <p style={{ fontSize: 14, lineHeight: 1.8, color: "var(--color-text-secondary)", maxWidth: 380 }}>
-        {t(step.desc, locale)}
-      </p>
-    </div>
   );
 }

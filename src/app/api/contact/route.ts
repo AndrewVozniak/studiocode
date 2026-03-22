@@ -77,7 +77,7 @@ export async function POST(request: Request) {
     // Build email content
     const htmlContent = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h2 style="color: #333; border-bottom: 2px solid #c8ff00; padding-bottom: 10px;">New Contact Form Submission</h2>
+        <h2 style="color: #333; border-bottom: 2px solid #6366F1; padding-bottom: 10px;">New Contact Form Submission</h2>
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td style="padding: 10px 0; color: #666; font-weight: bold; width: 140px;">Name:</td>

@@ -60,3 +60,68 @@ CRITICAL: Fix code, do NOT deploy or modify nginx/systemd. Steps: 1) Read CLAUDE
 ### ASSISTANT
 Edit plan failed — check activity log for details.
 
+### USER
+Пришел ответ от заказчика:
+
+Привіт, дякую, подивився. Загалом напрямок мені подобається — по стилю і структурі вже близько до того, що потрібно. Є відчуття сайту IT / dev-компанії, і це плюс.
+
+З того, що хотів би трохи допрацювати:
+
+-всюди використовуємо назву
+studiocode.com.ua
+
+ злитно, як у домені;
+
+-темну версію, можливо, варто зробити трохи легшою / чистішою по відчуттю, бо зараз вона трохи затемна;
+
+-хотілося б, щоб блоки Services / Process / Tech Stack / About / Contacts ще краще зчитувались візуально і сайт виглядав трохи більш “корпоративно”, менш як демо;
+
+А в цілому база хороша, стиль мені підходить, можна далі рухатись у цьому напрямку.
+
+
+Так-же прикрепил логотип (studiacodu_final_logo.png) который должен быть. спасибо
+
+### ASSISTANT
+Зрозумів. Фідбек чіткий, ось що потрібно зробити:
+
+1. **Назва** — замінити всі варіанти ("Studio Code", "StudioCode", "studio code") на `studiocode.com.ua` у всіх текстових блоках сайту
+
+2. **Темна тема** — зробити трохи світлішою/чистішою: підняти фон з `#0B1121` до чогось ближчого до `#0F172A`–`#111827`, підняти яскравість тексту та карток
+
+3. **Секції Services / Process / Tech Stack / About / Contacts** — покращити читабельність, додати більше whitespace, чіткіші заголовки, більш корпоративний вигляд
+
+4. **Логотип** — підключити `studiacodu_final_logo.png` замість текстового логотипу в Header та Footer
+
+Щодо логотипу — де знаходиться файл `studiacodu_final_logo.png`? Він вже завантажений на сервер чи його потрібно розмістити? Якщо він є на сервері, скажіть шлях — і я підключу його одразу разом з усіма правками.
+
+### USER
+Пришел ответ от заказчика:
+
+Привіт, дякую, подивився. Загалом напрямок мені подобається — по стилю і структурі вже близько до того, що потрібно. Є відчуття сайту IT / dev-компанії, і це плюс.
+
+З того, що хотів би трохи допрацювати:
+
+-всюди використовуємо назву
+studiocode.com.ua
+
+ злитно, як у домені;
+
+-темну версію, можливо, варто зробити трохи легшою / чистішою по відчуттю, бо зараз вона трохи затемна;
+
+-хотілося б, щоб блоки Services / Process / Tech Stack / About / Contacts ще краще зчитувались візуально і сайт виглядав трохи більш “корпоративно”, менш як демо;
+
+А в цілому база хороша, стиль мені підходить, можна далі рухатись у цьому напрямку.
+
+
+Так-же прикрепил логотип (studiacodu_final_logo.png) он у тебя уже который должен быть. спасибо
+
+### ASSISTANT
+**Edit Plan** — 3 stages:
+
+1. **Brand name + logo integration** — Replace all brand name occurrences with 'studiocode.com.ua' (lowercase, no spaces, as the domain). Integrate the studiacodu_final_logo.png into the Header and Footer, replacing any text-only or placeholder logo.
+2. **Dark theme lightening** — Lift the dark background from #0B1121 to a slightly lighter navy (e.g. #0F172A or #111827), increase card/surface contrast, and brighten muted text colors so the dark mode feels cleaner and less heavy.
+3. **Corporate polish for key sections** — Improve visual weight and readability of Services, Process, Tech Stack, About, and Contacts sections: tighten spacing, add subtle dividers or section borders, improve card hierarchy (stronger headings, better icon/text contrast), and ensure consistent padding — making the site feel production-grade rather than a demo.
+
+### ASSISTANT
+Edit plan completed — all 3 stages done.
+
